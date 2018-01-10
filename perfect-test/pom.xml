@@ -15,6 +15,7 @@
     <module>elasticsearch</module>
     <module>security</module>
     <module>javamail</module>
+    <module>resttemplate</module>
   </modules>
   <packaging>pom</packaging>
 

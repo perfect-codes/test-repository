@@ -1,4 +1,4 @@
-package com.perfectcodes.oauth2server;
+package com.perfectcodes.oauth2client;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
