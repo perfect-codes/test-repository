@@ -1,0 +1,16 @@
+server:
+  port: 9999
+spring:
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: file:///D:/dev/git/xpf/test-repository/spring-cloud/spring-cloud-config/src/main/resources/config #配置文件根目录
+  application:
+    name: config-center
+  profiles:
+    active: native #测试环境下,不使用git管理配置文件
+  security: #加密配置
+    user:
+      name: test
+      password: test

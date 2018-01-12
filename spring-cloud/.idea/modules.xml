@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/eureka-client-consumer-feign/eureka-client-consumer-feign.iml" filepath="$PROJECT_DIR$/eureka-client-consumer-feign/eureka-client-consumer-feign.iml" />
+      <module fileurl="file://$PROJECT_DIR$/eureka-client-consumer-hystrix/eureka-client-consumer-hystrix.iml" filepath="$PROJECT_DIR$/eureka-client-consumer-hystrix/eureka-client-consumer-hystrix.iml" />
+      <module fileurl="file://$PROJECT_DIR$/eureka-client-consumer-ribbon/eureka-client-consumer-ribbon.iml" filepath="$PROJECT_DIR$/eureka-client-consumer-ribbon/eureka-client-consumer-ribbon.iml" />
+      <module fileurl="file://$PROJECT_DIR$/eureka-client-producer/eureka-client-producer.iml" filepath="$PROJECT_DIR$/eureka-client-producer/eureka-client-producer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/eureka-server/eureka-server.iml" filepath="$PROJECT_DIR$/eureka-server/eureka-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-cloud.iml" filepath="$PROJECT_DIR$/spring-cloud.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-cloud-config/spring-cloud-config.iml" filepath="$PROJECT_DIR$/spring-cloud-config/spring-cloud-config.iml" />
+    </modules>
+  </component>
+</project>
