@@ -7,6 +7,11 @@
   <version>1.0-SNAPSHOT</version>
   <modules>
     <module>spring-cloud-config</module>
+    <module>eureka-server</module>
+    <module>eureka-client-producer</module>
+    <module>eureka-client-consumer-ribbon</module>
+    <module>eureka-client-consumer-feign</module>
+    <module>eureka-client-consumer-hystrix</module>
   </modules>
   <packaging>pom</packaging>
 
