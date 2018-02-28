@@ -10,3 +10,15 @@ spring:
     show-sql: true
   thymeleaf:
     cache: false
+    check-template: false
+    mode: LEGACYHTML5
+server:
+  context-path: /wechat
+gj:
+  prop:
+#    appid: wx4d033972d3910170
+#    secret: b9093efbfe18128340f0be66d9a97ba7
+    appid: wx3bb698ca6c90ed80
+    secret: b13b5c52b0408d756d6ea81d7b5f6379
+    affixDir: D:/dev/zz_affix/gj
+    webDomain: http://

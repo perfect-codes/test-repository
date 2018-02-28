@@ -14,4 +14,6 @@ public interface UserService {
     User getBean(Long id) throws Exception;
 
     Page<User> pageBean(User model, Pageable pageable) throws Exception;
+
+    User findByOpenid(String openid) throws Exception;
 }

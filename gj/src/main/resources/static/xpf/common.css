@@ -1,0 +1,13 @@
+.am-btn-primary{
+	background-color: #fec810 !important;
+	border-color:#FEC810 !important;
+}
+footer{
+	text-align: center;
+	/*margin-top: 5px !important;*/
+	font-size: 1.4rem;
+	color: #FFF;
+	line-height: 2rem;
+	padding: 1rem;
+	background-color: #333333;
+}

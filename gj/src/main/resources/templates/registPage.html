@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>快速办卡</title>
+    <link rel="stylesheet" href="http://cdn.amazeui.org/amazeui/2.7.2/css/amazeui.min.css"/>
+    <link rel="stylesheet" href="css/common.css"/>
+    <link rel="stylesheet" href="css/registPage.css"/>
+    <script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="http://cdn.amazeui.org/amazeui/2.7.2/js/amazeui.min.js"></script>
+    <script type="text/javascript" src="http://cdn.amazeui.org/amazeui/2.7.2/js/amazeui.ie8polyfill.min.js"></script>
+    <script type="text/javascript" src="http://cdn.amazeui.org/amazeui/2.7.2/js/amazeui.widgets.helper.min.js"></script>
+</head>
+
+<body>
+<img data-th-src="${banner.imgUrl}" style="width: 100%;height: 12rem;margin-bottom: 1rem;" alt=""/>
+<div class="am-container">
+    <form class="am-form">
+        <fieldset>
+            <ul class="am-nav">
+                <li class="am-active am-margin-bottom"><i class="am-icon-user am-text-primary"></i><span
+                        class="am-margin-left-xs">申请人资料</span></li>
+            </ul>
+            <div class="am-form-group am-form-icon">
+                <i class="am-icon-calendar"></i>
+                <input type="text" class="am-form-field" placeholder="请输入真实姓名">
+            </div>
+            <div class="am-form-group am-form-icon">
+                <i class="am-icon-calendar"></i>
+                <input type="text" class="am-form-field" placeholder="请输入身份证号">
+            </div>
+            <div class="am-form-group am-form-icon">
+                <i class="am-icon-calendar"></i>
+                <input type="text" class="am-form-field" placeholder="请输入手机号">
+            </div>
+            <div class="am-panel am-panel-default">
+                <ul class="am-list" style="padding: 1rem 0.5rem;">
+                    <li>1.请务必填写真实信息</li>
+                    <li>2.请务必填写真实信息</li>
+                    <li>3.请务必填写真实信息</li>
+                </ul>
+            </div>
+            <div class="am-checkbox">
+                <label>
+                    <input type="checkbox"><a href="#">同意用户协议</a>
+                </label>
+            </div>
+            <button type="submit" class="am-btn am-btn-primary am-btn-block am-radius">提交</button>
+        </fieldset>
+    </form>
+</div>
+<footer class="am-panel am-panel-default am-padding-bottom-sm" style="margin-bottom: 0px;border: none;">
+    <div class="am-container">
+        <ul class="am-nav gj-textalign-center">
+            <li>版权所有 翻版必究</li>
+            <li>北京市XXX科技发展有限公司</li>
+        </ul>
+    </div>
+</footer>
+</body>
+
+</html>

@@ -12,7 +12,9 @@ public class Register implements Serializable {
     @Column(length = 20)
     private String name;
     @Column(length = 11)
-    private String phone;
+    private String telphone;
+    @Column(length = 18)
+    private String idcard;
     private Integer status;
     private String comment;
     private Date createDate;
@@ -34,12 +36,20 @@ public class Register implements Serializable {
         this.name = name;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getTelphone() {
+        return telphone;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setTelphone(String telphone) {
+        this.telphone = telphone;
+    }
+
+    public String getIdcard() {
+        return idcard;
+    }
+
+    public void setIdcard(String idcard) {
+        this.idcard = idcard;
     }
 
     public Integer getStatus() {
@@ -72,5 +82,28 @@ public class Register implements Serializable {
 
     public void setUpdateDate(Date updateDate) {
         this.updateDate = updateDate;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("{");
+        sb.append("\"id\":")
+                .append(id);
+        sb.append(",\"name\":\"")
+                .append(name).append('\"');
+        sb.append(",\"telphone\":\"")
+                .append(telphone).append('\"');
+        sb.append(",\"idcard\":\"")
+                .append(idcard).append('\"');
+        sb.append(",\"status\":")
+                .append(status);
+        sb.append(",\"comment\":\"")
+                .append(comment).append('\"');
+        sb.append(",\"createDate\":\"")
+                .append(createDate).append('\"');
+        sb.append(",\"updateDate\":\"")
+                .append(updateDate).append('\"');
+        sb.append('}');
+        return sb.toString();
     }
 }

@@ -12,7 +12,21 @@ public class User implements Serializable{
     @Column(length = 20)
     private String name;
     @Column(length = 11)
-    private String phone;
+    private String telphone;
+    @Column(length = 50)
+    private String nickname;
+    @Column(length = 50)
+    private String openid;
+    @Column(length = 50)
+    private String unionid;
+    @Column(length = 2)
+    private Integer sex;
+    @Column(length = 10)
+    private String country;
+    @Column(length = 10)
+    private String province;
+    @Column(length = 10)
+    private String city;
     private Integer status;
     private String comment;
     private Integer level;
@@ -36,20 +50,68 @@ public class User implements Serializable{
         this.name = name;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getTelphone() {
+        return telphone;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setTelphone(String telphone) {
+        this.telphone = telphone;
     }
 
-    public String getComment() {
-        return comment;
+    public String getNickname() {
+        return nickname;
     }
 
-    public void setComment(String comment) {
-        this.comment = comment;
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public String getOpenid() {
+        return openid;
+    }
+
+    public void setOpenid(String openid) {
+        this.openid = openid;
+    }
+
+    public String getUnionid() {
+        return unionid;
+    }
+
+    public void setUnionid(String unionid) {
+        this.unionid = unionid;
+    }
+
+    public Integer getSex() {
+        return sex;
+    }
+
+    public void setSex(Integer sex) {
+        this.sex = sex;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getProvince() {
+        return province;
+    }
+
+    public void setProvince(String province) {
+        this.province = province;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public Integer getStatus() {
@@ -58,6 +120,14 @@ public class User implements Serializable{
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 
     public Integer getLevel() {
@@ -92,28 +162,4 @@ public class User implements Serializable{
         this.updateDate = updateDate;
     }
 
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("{");
-        sb.append("\"id\":")
-                .append(id);
-        sb.append(",\"name\":\"")
-                .append(name).append('\"');
-        sb.append(",\"phone\":\"")
-                .append(phone).append('\"');
-        sb.append(",\"status\":")
-                .append(status);
-        sb.append(",\"comment\":\"")
-                .append(comment).append('\"');
-        sb.append(",\"level\":")
-                .append(level);
-        sb.append(",\"preLevel\":")
-                .append(preLevel);
-        sb.append(",\"createDate\":\"")
-                .append(createDate).append('\"');
-        sb.append(",\"updateDate\":\"")
-                .append(updateDate).append('\"');
-        sb.append('}');
-        return sb.toString();
-    }
 }

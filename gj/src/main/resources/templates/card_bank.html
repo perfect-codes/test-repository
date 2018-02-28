@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<title>优惠办卡</title>
+	<link rel="stylesheet" href="http://cdn.amazeui.org/amazeui/2.7.2/css/amazeui.min.css" />
+	<link rel="stylesheet" href="css/common.css" />
+	<link rel="stylesheet" href="css/card_bank.css" />
+	<script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript" src="http://cdn.amazeui.org/amazeui/2.7.2/js/amazeui.min.js"></script>
+	<script type="text/javascript" src="http://cdn.amazeui.org/amazeui/2.7.2/js/amazeui.ie8polyfill.min.js"></script>
+	<script type="text/javascript" src="http://cdn.amazeui.org/amazeui/2.7.2/js/amazeui.widgets.helper.min.js"></script>
+</head>
+
+<body>
+<div class="am-slider am-slider-default" data-am-flexslider id="demo-slider-0">
+	<ul class="am-slides">
+		<li th:each="banner : ${banners}"><img src="http://s.amazeui.org/media/i/demos/bing-1.jpg" th:src="${banner.imgUrl}"/></li>
+		<!--<li><img src="http://s.amazeui.org/media/i/demos/bing-2.jpg" /></li>-->
+	</ul>
+</div>
+<div class="am-container">
+	<ul class="am-nav">
+		<li class="am-active am-margin-bottom"><i class="am-icon-cc-visa am-text-primary"></i><span class="am-margin-left-xs">快速办卡</span></li>
+	</ul>
+	<ul class="am-avg-sm-3">
+		<li class="gj-border gj-textalign-center" th:each="bank : ${banks}">
+			<a href="#" class="am-link-muted">
+				<img width="50" height="50" src="img/gd.png" th:src="${bank.logoUrl}"/>
+				<p class="am-text-truncate gj-text-line" th:text="${bank.name}">光大银行</p>
+				<small class="gj-text-line am-nbfc">加油6%返现</small>
+				<!--<div class="gj-badge-container">
+					<a class="am-badge am-badge-warning am-round">Warning</a>
+				</div>-->
+			</a>
+		</li>
+	</ul>
+</div>
+<footer class="am-panel am-panel-default am-margin-top-sm am-padding-bottom-sm" style="margin: 10px 12px 12px;padding:1rem;border:none;border-top: solid 1px #D3D3D3;">
+	<div class="am-container">
+		<ul class="am-nav gj-textalign-center">
+			<li>版权所有 翻版必究</li>
+			<li>北京市XXX科技发展有限公司</li>
+		</ul>
+	</div>
+</footer>
+</body>
+</html>

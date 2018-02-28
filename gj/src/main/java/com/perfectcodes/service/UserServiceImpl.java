@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -21,6 +22,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void addBean(User bean) throws Exception {
+        if (StringUtils.isEmpty(bean.getOpenid())) {//不合法请求
+            return;
+        } else if (findByOpenid(bean.getOpenid()) != null) {//已存在
+            return;
+        }
         userRepository.save(bean);
     }
 
@@ -40,11 +46,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Page<User> pageBean(final User model,final Pageable pageable) throws Exception {
-        return userRepository.findAll(getSpecification(model),pageable);
+    public Page<User> pageBean(final User model, final Pageable pageable) throws Exception {
+        return userRepository.findAll(getSpecification(model), pageable);
     }
 
-    private Specification getSpecification(Object model){
+    @Override
+    public User findByOpenid(String openid) throws Exception {
+        return userRepository.findByOpenid(openid);
+    }
+
+    private Specification getSpecification(Object model) {
         return new Specification<User>() {
             @Override
             public Predicate toPredicate(Root<User> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
