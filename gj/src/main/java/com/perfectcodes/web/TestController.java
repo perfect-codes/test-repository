@@ -68,4 +68,39 @@ public class TestController extends BaseController{
         return "bankseller";
     }
 
+    @RequestMapping(value = "/bankuser",method = {RequestMethod.GET})
+    public String test2(){
+        return "bankuser";
+    }
+
+    @RequestMapping(value = "/bankspread",method = {RequestMethod.GET})
+    public String test3(){
+        return "bankspread";
+    }
+
+    @RequestMapping(value = "/bank",method = {RequestMethod.GET})
+    public String test4(Model model){
+        Banner banner = new Banner();
+        banner.setType(1);
+        banner.setStatus(StatusEnum.NORMAL.getVal());
+        List<Banner> banners = null;
+        try {
+            banners = bannerService.findAll(banner);
+        } catch (Exception e) {
+            logger.error("办卡页banner列表查询错误",e);
+        }
+        model.addAttribute("banners",banners);
+        //Bank
+        Bank bank = new Bank();
+        bank.setStatus(StatusEnum.NORMAL.getVal());
+        List<Bank> banks = null;
+        try {
+            banks = bankService.findAll(bank);
+        } catch (Exception e) {
+            logger.error("办卡页银行列表查询错误",e);
+        }
+        model.addAttribute("banks",banks);
+        return "bank";
+    }
+
 }

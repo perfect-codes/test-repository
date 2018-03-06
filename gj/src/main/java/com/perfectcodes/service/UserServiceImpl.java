@@ -1,5 +1,7 @@
 package com.perfectcodes.service;
 
+import com.perfectcodes.common.ErrorCodeEnum;
+import com.perfectcodes.common.GeneralException;
 import com.perfectcodes.domain.User;
 import com.perfectcodes.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,10 +24,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void addBean(User bean) throws Exception {
-        if (StringUtils.isEmpty(bean.getOpenid())) {//不合法请求
-            return;
-        } else if (findByOpenid(bean.getOpenid()) != null) {//已存在
-            return;
+        if (findByIdcardAndBankCode(bean.getIdcard(),bean.getBankCode()) != null) {//已存在
+            throw new GeneralException(ErrorCodeEnum.ERROR_UNIQUE);
         }
         userRepository.save(bean);
     }
@@ -46,13 +46,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Page<User> pageBean(final User model, final Pageable pageable) throws Exception {
-        return userRepository.findAll(getSpecification(model), pageable);
+    public User findByIdcardAndBankCode(String idcard, String bankCode) throws Exception {
+        return userRepository.findByIdcardAndBankCode(idcard,bankCode);
     }
 
     @Override
-    public User findByOpenid(String openid) throws Exception {
-        return userRepository.findByOpenid(openid);
+    public Page<User> pageBean(final User model, final Pageable pageable) throws Exception {
+        return userRepository.findAll(getSpecification(model), pageable);
     }
 
     private Specification getSpecification(Object model) {

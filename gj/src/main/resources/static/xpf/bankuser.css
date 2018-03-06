@@ -10,9 +10,6 @@ form{
 form fieldset{
 	padding: 0 !important;
 }
-*{
-	margin: 0 !important;
-}
 .gj-action-item{
 	text-align: center;
 	padding: 10px 5px;

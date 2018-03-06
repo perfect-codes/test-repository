@@ -48,6 +48,8 @@ public class FileController extends BaseController {
         String name = session.getId() + subfix;
         StringBuffer path = new StringBuffer(folder.getAbsolutePath());
         path.append(File.separator)
+                .append("image")
+                .append(File.separator)
                 .append(calendar.get(Calendar.YEAR))
                 .append(File.separator)
                 .append(calendar.get(Calendar.MONTH)+1)
@@ -64,6 +66,7 @@ public class FileController extends BaseController {
                     .setOriginName(originName)
                     .setName(name)
                     .setPath(path.toString())
+                    .setUrl(path.substring(folder.getAbsolutePath().length()))
                     .setCreateDate(new Date())
                     .setObjType(ObjTypeEnum.QR_IMAGE.getVal())
                     .setStatus(StatusEnum.NORMAL.getVal());

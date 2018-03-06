@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-		<title></title>
+		<title>优惠办卡</title>
 		<link rel="stylesheet" href="http://cdn.amazeui.org/amazeui/2.7.2/css/amazeui.min.css" />
 		<link rel="stylesheet" href="xpf/common.css" />
 		<link rel="stylesheet" href="xpf/bank.css" />
@@ -17,7 +17,7 @@
 				<li th:each="banner : ${banners}"><img src="http://s.amazeui.org/media/i/demos/bing-1.jpg" th:src="${banner.imgUrl}"/></li>
 			</ul>
 		</div>
-		<section style="padding: 0 10px;">
+		<section style="padding: 0 10px 2rem;">
 			<ol class="am-breadcrumb">
 				<li>
 					<a href="#">优惠办卡</a>
@@ -25,108 +25,18 @@
 			</ol>
 			<div class="am-avg-sm-3 gj-banklist">
 				<div class="am-u-sm-4" th:each="bank : ${banks}">
-					<div class="gj-banklist-item">
-						<img src="img/gd.png" th:src="${bank.logoUrl}"/>
-						<hr class="gj-line" />
-						<span class="am-badge am-radius am-badge-danger">秒批</span>
-						<dl>
-							<dt th:text="${bank.name}">苏联空军</dt>
-							<dd>老司机带带我</dd>
-						</dl>
-					</div>
+					<a href="#" th:href="${bank.name+'.html'}">
+						<div class="gj-banklist-item">
+							<img src="img/gd.png" th:src="${bank.logoUrl}"/>
+							<hr class="gj-line" />
+							<span class="am-badge am-radius am-badge-danger">秒批</span>
+							<dl>
+								<dt th:text="${bank.name}">苏联空军</dt>
+								<dd>老司机带带我</dd>
+							</dl>
+						</div>
+					</a>
 				</div>
-				<!--<div class="am-u-sm-4">
-					<div class="gj-banklist-item">
-						<img src="img/gd.png" />
-						<hr class="gj-line" />
-						<span class="am-badge am-radius am-badge-danger">秒批</span>
-						<dl>
-							<dt>苏联空军</dt>
-							<dd>老司机带带我</dd>
-						</dl>
-					</div>
-				</div>
-				<div class="am-u-sm-4">
-					<div class="gj-banklist-item">
-						<img src="img/gd.png" />
-						<hr class="gj-line" />
-						<span class="am-badge am-radius am-badge-danger">秒批</span>
-						<dl>
-							<dt>苏联空军</dt>
-							<dd>老司机带带我</dd>
-						</dl>
-					</div>
-				</div>
-			</div>
-			<div class="am-g gj-banklist">
-				<div class="am-u-sm-4">
-					<div class="gj-banklist-item">
-						<img src="img/gd.png" />
-						<hr class="gj-line" />
-						<span class="am-badge am-radius am-badge-danger">秒批</span>
-						<dl>
-							<dt>苏联空军</dt>
-							<dd>老司机带带我</dd>
-						</dl>
-					</div>
-				</div>
-				<div class="am-u-sm-4">
-					<div class="gj-banklist-item">
-						<img src="img/gd.png" />
-						<hr class="gj-line" />
-						<span class="am-badge am-radius am-badge-danger">秒批</span>
-						<dl>
-							<dt>苏联空军</dt>
-							<dd>老司机带带我</dd>
-						</dl>
-					</div>
-				</div>
-				<div class="am-u-sm-4">
-					<div class="gj-banklist-item">
-						<img src="img/gd.png" />
-						<hr class="gj-line" />
-						<span class="am-badge am-radius am-badge-danger">秒批</span>
-						<dl>
-							<dt>苏联空军</dt>
-							<dd>老司机带带我</dd>
-						</dl>
-					</div>
-				</div>
-			</div>
-			<div class="am-g gj-banklist">
-				<div class="am-u-sm-4">
-					<div class="gj-banklist-item">
-						<img src="img/gd.png" />
-						<hr class="gj-line" />
-						<span class="am-badge am-radius am-badge-danger">秒批</span>
-						<dl>
-							<dt>苏联空军</dt>
-							<dd>老司机带带我</dd>
-						</dl>
-					</div>
-				</div>
-				<div class="am-u-sm-4">
-					<div class="gj-banklist-item">
-						<img src="img/gd.png" />
-						<hr class="gj-line" />
-						<span class="am-badge am-radius am-badge-danger">秒批</span>
-						<dl>
-							<dt>苏联空军</dt>
-							<dd>老司机带带我</dd>
-						</dl>
-					</div>
-				</div>
-				<div class="am-u-sm-4">
-					<div class="gj-banklist-item">
-						<img src="img/gd.png" />
-						<hr class="gj-line" />
-						<span class="am-badge am-radius am-badge-danger">秒批</span>
-						<dl>
-							<dt>苏联空军</dt>
-							<dd>老司机带带我</dd>
-						</dl>
-					</div>
-				</div>-->
 			</div>
 		</section>
 		<section class="gj-action-list">
@@ -154,7 +64,7 @@
 		<footer>
 			<div class="am-container">
 				<p>版权所有 翻版必究</p>
-				<p>北京市XXX科技发展有限公司</p>
+				<p>北京华融信和科技有限公司</p>
 			</div>
 		</footer>
 		<script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>

@@ -1,5 +1,6 @@
 package com.perfectcodes.web;
 
+import com.perfectcodes.common.BankCodeEnum;
 import com.perfectcodes.common.CommonResp;
 import com.perfectcodes.common.StatusEnum;
 import com.perfectcodes.component.PropConfig;
@@ -11,6 +12,7 @@ import com.perfectcodes.service.BankService;
 import com.perfectcodes.service.BannerService;
 import com.perfectcodes.service.UserService;
 import com.perfectcodes.util.GJHttpUtil;
+import com.perfectcodes.util.WechatSignUtil;
 import org.apache.http.client.methods.HttpGet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,6 +23,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URI;
+import java.net.URLEncoder;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -56,12 +61,12 @@ public class WeChatController extends BaseController {
      * @throws IOException
      */
     @RequestMapping(value = "/view/{name}",method = {RequestMethod.GET})
-    public String index(@PathVariable String name) throws IOException {
+    public String index(@PathVariable String name,@RequestParam(required = false) String bankCode) throws IOException {
         String state = "bank";
-        if (name.equals("bankUser")||name.equals("bankSeller")){
-            state = name.toLowerCase();
+        if (name.equals("bankSeller")||name.equals("bankSpread")){
+            state = name.toLowerCase()+","+bankCode;
         }
-        String url = String.format("redirect:https://open.weixin.qq.com/connect/oauth2/authorize?appid=%s&redirect_uri=%s/wechat/code2token&response_type=code&scope=snsapi_userinfo&state=%s#wechat_redirect",propConfig.getAppid(),"http://172.20.1.57:8080",state);
+        String url = String.format("redirect:https://open.weixin.qq.com/connect/oauth2/authorize?appid=%s&redirect_uri=%s/wechat/code2token&response_type=code&scope=snsapi_userinfo&state=%s",propConfig.getAppid(),propConfig.getWebDomain(),state);
         logger.debug("当前access_token为：[{}]",PropConfig.getAccessToken());
         logger.debug("请求重定向地址为：[{}]",url);
         return url;
@@ -86,7 +91,7 @@ public class WeChatController extends BaseController {
         HashMap<String,Object> usermap = GJHttpUtil.get(httpGetUserinfo);
         logger.debug(usermap.toString());
         //新增用户
-        Date date = new Date();
+        /*Date date = new Date();
         User user = new User();
         user.setNickname((String) usermap.get("nickname"));
         user.setSex((Integer) usermap.get("sex"));
@@ -95,7 +100,6 @@ public class WeChatController extends BaseController {
         user.setCity((String) usermap.get("city"));
         user.setOpenid((String) usermap.get("openid"));
         user.setUnionid((String) usermap.get("unionid"));
-        user.setLevel(1);
         user.setCreateDate(date);
         user.setUpdateDate(date);
         try {
@@ -108,28 +112,47 @@ public class WeChatController extends BaseController {
         userinfo.put("nickname",user.getNickname());
         userinfo.put("workNumber",String.format("%6d",user.getId()));
         userinfo.put("duty",user.getLevel());
-        model.addAttribute("userinfo",userinfo);
-        Banner banner = new Banner();
-        banner.setType(1);
-        banner.setStatus(StatusEnum.NORMAL.getVal());
-        List<Banner> banners = null;
-        try {
-            banners = bannerService.findAll(banner);
-        } catch (Exception e) {
-            logger.error("办卡页banner列表查询错误",e);
+        model.addAttribute("userinfo",userinfo);*/
+        String[] params = state.split(",");
+        String scene = params[0];
+        String bankCode = null;
+        if (state!=null&&state.startsWith("bankseller")){
+            bankCode = params[1];
+            model.addAttribute("bankCode",bankCode);
+            Banner banner = new Banner();
+            banner.setType(3);
+            banner.setStatus(StatusEnum.NORMAL.getVal());
+            try {
+                List<Banner> banners = bannerService.findAll(banner);
+                model.addAttribute("banner",banners.get(0));//默认取该类型第一张
+            } catch (Exception e) {
+                logger.error("代理注册页banner加载错误",e);
+            }
+        }else{//bank.html页面组装内容
+            Banner banner = new Banner();
+            banner.setType(1);
+            banner.setStatus(StatusEnum.NORMAL.getVal());
+            List<Banner> banners = null;
+            try {
+                banners = bannerService.findAll(banner);
+            } catch (Exception e) {
+                logger.error("办卡页banner列表查询错误",e);
+            }
+            model.addAttribute("banners",banners);
+            //Bank
+            Bank bank = new Bank();
+            bank.setStatus(StatusEnum.NORMAL.getVal());
+            List<Bank> banks = null;
+            try {
+                banks = bankService.findAll(bank);
+            } catch (Exception e) {
+                logger.error("办卡页银行列表查询错误",e);
+            }
+            model.addAttribute("banks",banks);
+            //保存session
+            session.setAttribute("openid",openid);
         }
-        model.addAttribute("banners",banners);
-        //Bank
-        Bank bank = new Bank();
-        bank.setStatus(StatusEnum.NORMAL.getVal());
-        List<Bank> banks = null;
-        try {
-            banks = bankService.findAll(bank);
-        } catch (Exception e) {
-            logger.error("办卡页银行列表查询错误",e);
-        }
-        model.addAttribute("banks",banks);
-        return state;
+        return scene;
     }
 
 }

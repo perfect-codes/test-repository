@@ -12,6 +12,7 @@ public class PropConfig {
     private String affixDir;
     private String webDomain;
     private static String accessToken = null;
+    private static String jsapiTicket = null;
 
     public String getAppid() {
         return appid;
@@ -51,5 +52,13 @@ public class PropConfig {
 
     public void setAccessToken(String accessToken) {
         PropConfig.accessToken = accessToken;
+    }
+
+    public static String getJsapiTicket() {
+        return jsapiTicket;
+    }
+
+    public void setJsapiTicket(String jsapiTicket) {
+        PropConfig.jsapiTicket = jsapiTicket;
     }
 }

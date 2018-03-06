@@ -14,6 +14,7 @@ spring:
     mode: LEGACYHTML5
 server:
   context-path: /wechat
+  port: 9898
 gj:
   prop:
 #    appid: wx4d033972d3910170
@@ -21,4 +22,5 @@ gj:
     appid: wx3bb698ca6c90ed80
     secret: b13b5c52b0408d756d6ea81d7b5f6379
     affixDir: D:/dev/zz_affix/gj
-    webDomain: http://
+#    webDomain: http://172.20.1.57:8080
+    webDomain: http://192.168.0.100:8080

@@ -11,26 +11,14 @@ public class User implements Serializable{
     private Long id;
     @Column(length = 20)
     private String name;
+    @Column(length = 18)
+    private String idcard;
     @Column(length = 11)
-    private String telphone;
-    @Column(length = 50)
-    private String nickname;
-    @Column(length = 50)
-    private String openid;
-    @Column(length = 50)
-    private String unionid;
-    @Column(length = 2)
-    private Integer sex;
-    @Column(length = 10)
-    private String country;
-    @Column(length = 10)
-    private String province;
-    @Column(length = 10)
-    private String city;
+    private String telephone;
     private Integer status;
     private String comment;
-    private Integer level;
-    private Long preLevel;
+    private String bankCode;
+    private String seller;
     private Date createDate;
     private Date updateDate;
 
@@ -50,68 +38,20 @@ public class User implements Serializable{
         this.name = name;
     }
 
-    public String getTelphone() {
-        return telphone;
+    public String getIdcard() {
+        return idcard;
     }
 
-    public void setTelphone(String telphone) {
-        this.telphone = telphone;
+    public void setIdcard(String idcard) {
+        this.idcard = idcard;
     }
 
-    public String getNickname() {
-        return nickname;
+    public String getTelephone() {
+        return telephone;
     }
 
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
-    }
-
-    public String getOpenid() {
-        return openid;
-    }
-
-    public void setOpenid(String openid) {
-        this.openid = openid;
-    }
-
-    public String getUnionid() {
-        return unionid;
-    }
-
-    public void setUnionid(String unionid) {
-        this.unionid = unionid;
-    }
-
-    public Integer getSex() {
-        return sex;
-    }
-
-    public void setSex(Integer sex) {
-        this.sex = sex;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public String getProvince() {
-        return province;
-    }
-
-    public void setProvince(String province) {
-        this.province = province;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
     }
 
     public Integer getStatus() {
@@ -130,20 +70,20 @@ public class User implements Serializable{
         this.comment = comment;
     }
 
-    public Integer getLevel() {
-        return level;
+    public String getBankCode() {
+        return bankCode;
     }
 
-    public void setLevel(Integer level) {
-        this.level = level;
+    public void setBankCode(String bankCode) {
+        this.bankCode = bankCode;
     }
 
-    public Long getPreLevel() {
-        return preLevel;
+    public String getSeller() {
+        return seller;
     }
 
-    public void setPreLevel(Long preLevel) {
-        this.preLevel = preLevel;
+    public void setSeller(String seller) {
+        this.seller = seller;
     }
 
     public Date getCreateDate() {
@@ -161,5 +101,4 @@ public class User implements Serializable{
     public void setUpdateDate(Date updateDate) {
         this.updateDate = updateDate;
     }
-
 }

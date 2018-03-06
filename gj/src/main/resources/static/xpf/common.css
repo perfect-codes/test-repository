@@ -1,6 +1,10 @@
 .am-btn-primary{
 	background-color: #fec810 !important;
 	border-color:#FEC810 !important;
+	color:#FFF !important;
+}
+*{
+	margin: 0 !important;
 }
 footer{
 	text-align: center;

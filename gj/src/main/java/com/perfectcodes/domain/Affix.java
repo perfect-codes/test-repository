@@ -15,6 +15,8 @@ public class Affix implements Serializable {
     private String name;
     @Column(length = 200)
     private String path;
+    @Column(length = 100)
+    private String url;
     @Column(length = 1)
     private Integer status;
     @Column(length = 1)
@@ -55,6 +57,15 @@ public class Affix implements Serializable {
 
     public Affix setPath(String path) {
         this.path = path;
+        return this;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public Affix setUrl(String url) {
+        this.url = url;
         return this;
     }
 

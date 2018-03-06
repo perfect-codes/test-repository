@@ -9,11 +9,11 @@ public class BaseController {
     protected Logger logger = LoggerFactory.getLogger(getClass());
 
     protected CommonResp successResp(){
-        return new CommonResp().setStatus(1).setMessage("操作成功");
+        return new CommonResp().setStatus(1).setMessage("请求成功");
     }
 
     protected CommonResp failureResp(){
-        return new CommonResp().setStatus(0).setMessage("操作失败");
+        return new CommonResp().setStatus(0).setMessage("请求超时，请稍后再试");
     }
 
 }

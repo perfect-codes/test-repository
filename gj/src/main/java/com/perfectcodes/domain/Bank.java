@@ -9,6 +9,8 @@ public class Bank implements Serializable {
     private Long id;
     @Column(length = 50)
     private String name;
+    @Column(length = 20)
+    private String code;
     private Integer status;
     private String applyUrl;
     private String queryUrl;
@@ -34,6 +36,14 @@ public class Bank implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public Integer getStatus() {
@@ -116,34 +126,4 @@ public class Bank implements Serializable {
         this.indexOrder = indexOrder;
     }
 
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("{");
-        sb.append("\"id\":")
-                .append(id);
-        sb.append(",\"name\":\"")
-                .append(name).append('\"');
-        sb.append(",\"status\":")
-                .append(status);
-        sb.append(",\"applyUrl\":\"")
-                .append(applyUrl).append('\"');
-        sb.append(",\"queryUrl\":\"")
-                .append(queryUrl).append('\"');
-        sb.append(",\"logoUrl\":\"")
-                .append(logoUrl).append('\"');
-        sb.append(",\"tag\":\"")
-                .append(tag).append('\"');
-        sb.append(",\"posterUrl\":\"")
-                .append(posterUrl).append('\"');
-        sb.append(",\"applyPostUrl\":\"")
-                .append(applyPostUrl).append('\"');
-        sb.append(",\"htmlUrl\":\"")
-                .append(htmlUrl).append('\"');
-        sb.append(",\"comment\":\"")
-                .append(comment).append('\"');
-        sb.append(",\"indexOrder\":")
-                .append(indexOrder);
-        sb.append('}');
-        return sb.toString();
-    }
 }

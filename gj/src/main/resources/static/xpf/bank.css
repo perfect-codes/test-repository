@@ -27,8 +27,12 @@ hr.gj-line{
 	margin: 0 5px !important;
 }
 .gj-banklist-item img{
-	width: 70px;
-	height: 70px;
+	width: 60px;
+	height: 60px;
+}
+.gj-banklist-item dt,.gj-banklist-item dd{
+	color: #333333 !important;
+	font-size: 1rem !important;
 }
 .gj-banklist-item .am-badge{
 	position: relative;
@@ -41,6 +45,10 @@ hr.gj-line{
 section.gj-action-list .gj-action-item > a{
 	color: #fec810 !important;
 	background-color: #333333;
+}
+section.gj-action-list p{
+	font-size: 1rem !important;
+	color: #333333 !important;
 }
 .am-breadcrumb a{
 	color: #333333;

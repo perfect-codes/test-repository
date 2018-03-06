@@ -45,10 +45,23 @@ public class SchedueConfig {
                 logger.error("获取access_token网络请求关闭错误");
             }
         }
+        //获取jsapi_ticket
+        httpGet = new HttpGet(String.format("https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=%s&type=jsapi", PropConfig.getAccessToken()));
+        try {
+            httpResponse = httpClient.execute(httpGet);
+            String content = EntityUtils.toString(httpResponse.getEntity());
+            logger.debug(String.format("jsapi_ticket:%s",content));
+            HashMap<String,Object> hashMap = GJJsonUtil.fromJSON(content, HashMap.class);
+            propConfig.setJsapiTicket((String) hashMap.get("ticket"));
+        } catch (IOException e) {
+            logger.error("获取jsapi_ticket失败，网络请求错误", e);
+        } finally {
+            try {
+                httpResponse.close();
+            } catch (IOException e) {
+                logger.error("获取jsapi_ticket网络请求关闭错误");
+            }
+        }
     }
 
-    @Scheduled(cron = "0/5 * * * * ?")
-    public void test() {
-//        logger.debug("----------------------------------------");
-    }
 }
