@@ -1,8 +1,11 @@
 package com.perfectcodes.common;
 
 public enum ErrorCodeEnum {
-    ERROR_UNIQUE("90001","记录已存在"),
-    ERROR_STATUS("90002","状态不匹配");
+    ERROR_UNIQUE("90001","信息已存在"),
+    ERROR_STATUS("90002","状态不匹配"),
+    ERROR_NOT_EXIST("90003","信息不存在"),
+    ERROR_ROLE("90004","角色或者类型不匹配");
+
     private String val;
     private String desc;
 

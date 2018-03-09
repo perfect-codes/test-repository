@@ -2,6 +2,7 @@ package com.perfectcodes.service;
 
 import com.perfectcodes.common.ErrorCodeEnum;
 import com.perfectcodes.common.GeneralException;
+import com.perfectcodes.common.StatusEnum;
 import com.perfectcodes.domain.Seller;
 import com.perfectcodes.repository.SellerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import java.util.List;
 
 @Service
 public class SellerServiceImpl implements SellerService {
@@ -53,6 +55,11 @@ public class SellerServiceImpl implements SellerService {
     @Override
     public Seller findByOpenid(String openid) throws Exception {
         return sellerRepository.findByOpenid(openid);
+    }
+
+    @Override
+    public List<Seller> findByLeader(Long leader) throws Exception {
+        return sellerRepository.findByLeaderAndStatus(leader, StatusEnum.NORMAL.getVal());
     }
 
     private Specification getSpecification(Object model){

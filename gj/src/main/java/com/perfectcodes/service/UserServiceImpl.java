@@ -2,6 +2,7 @@ package com.perfectcodes.service;
 
 import com.perfectcodes.common.ErrorCodeEnum;
 import com.perfectcodes.common.GeneralException;
+import com.perfectcodes.common.StatusEnum;
 import com.perfectcodes.domain.User;
 import com.perfectcodes.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -53,6 +55,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public Page<User> pageBean(final User model, final Pageable pageable) throws Exception {
         return userRepository.findAll(getSpecification(model), pageable);
+    }
+
+    @Override
+    public List<User> findBySeller(String seller) {
+        return userRepository.findBySellerAndStatus(seller, StatusEnum.NORMAL.getVal());
     }
 
     private Specification getSpecification(Object model) {
