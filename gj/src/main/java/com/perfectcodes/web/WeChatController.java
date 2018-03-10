@@ -101,6 +101,7 @@ public class WeChatController extends BaseController {
             scene = params[0];
             String leader = params[1];
             model.addAttribute("leader", leader);
+            model.addAttribute("openid", openid);
             Banner banner = new Banner();
             banner.setType(3);
             banner.setStatus(StatusEnum.NORMAL.getVal());

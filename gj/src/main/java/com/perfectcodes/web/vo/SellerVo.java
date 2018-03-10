@@ -22,6 +22,7 @@ public class SellerVo implements Serializable {
     @NotBlank(message = "支付宝昵称错误")
     private String aliNickName;
     private Long leader;
+    private String openid;
 
     public String getName() {
         return name;
@@ -69,6 +70,14 @@ public class SellerVo implements Serializable {
 
     public void setLeader(Long leader) {
         this.leader = leader;
+    }
+
+    public String getOpenid() {
+        return openid;
+    }
+
+    public void setOpenid(String openid) {
+        this.openid = openid;
     }
 
     @Override

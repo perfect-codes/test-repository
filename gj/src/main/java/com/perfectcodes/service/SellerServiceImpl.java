@@ -25,7 +25,7 @@ public class SellerServiceImpl implements SellerService {
 
     @Override
     public void addBean(Seller bean) throws Exception {
-        if(findByOpenid(bean.getOpenid())!=null){
+        if(findByOpenid(bean.getOpenid())==null){
             sellerRepository.save(bean);
         }else {
             throw new GeneralException(ErrorCodeEnum.ERROR_UNIQUE);
