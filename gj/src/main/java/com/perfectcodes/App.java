@@ -18,7 +18,7 @@ public class App extends SpringBootServletInitializer
     {
         SpringApplication app = new SpringApplication(App.class);
         app.setBannerMode(Banner.Mode.OFF);
-        app.addListeners(new TokenListener());
+//        app.addListeners(new TokenListener());
         app.run(args);
     }
 }

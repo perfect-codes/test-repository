@@ -6,12 +6,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ApplicationListener;
+import org.springframework.stereotype.Component;
 
 /**
  * @author xpf
  * @description 应用监听器
  * @date 2018/2/9 12:10
  */
+@Component
 public class TokenListener implements ApplicationListener {
 
     private static Logger logger = LoggerFactory.getLogger(TokenListener.class);

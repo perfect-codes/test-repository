@@ -1,0 +1,51 @@
+body{
+    background-color: #FFF;
+    position:static !important;
+}
+header,section{
+    background-color: #FFF;
+}
+form{
+    background: #DDDDDD;
+}
+form fieldset{
+    padding: 0 !important;
+}
+*{
+    margin: 0 !important;
+}
+div.gj-block{
+    width: 100%;
+    background-color: #FFF;
+    /*margin-top: 5px !important;*/
+    /*padding: 1rem 10px 3rem;*/
+}
+#shareit {
+    -webkit-user-select: none;
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.85);
+    text-align: center;
+    top: 0;
+    left: 0;
+    z-index: 999;
+}
+#shareit img {
+    max-width: 100%;
+}
+.arrow {
+    position: absolute;
+    right: 10%;
+    top: 5%;
+}
+#follow{
+    color: #FFF;
+    text-decoration: none;
+    font-size: 2rem;
+    position: relative;
+    top: 55%;
+    left: -4rem;
+    font-family: "arial, helvetica, sans-serif";
+}

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>快速办卡</title>
+    <link rel="stylesheet" href="http://cdn.amazeui.org/amazeui/2.7.2/css/amazeui.min.css"/>
+    <link rel="stylesheet" href="xpf/common.css"/>
+    <link rel="stylesheet" href="xpf/bankuser.css"/>
+    <link rel="stylesheet" href="xpf/font-awesome/css/font-awesome.min.css"/>
+</head>
+<body>
+<header>
+    <img src="http://s.amazeui.org/media/i/demos/bing-1.jpg" th:src="${banner.imgUrl}"  class="am-img-responsive"/>
+</header>
+<ol class="am-breadcrumb">
+    <li>
+        <a href="#">申请人信息</a>
+    </li>
+</ol>
+<form class="am-form" onsubmit="return submitInfo();">
+    <fieldset>
+        <div class="am-input-group">
+            <span class="am-input-group-label"><i class="am-icon-user am-icon-fw"></i></span>
+            <input type="text" class="am-form-field" placeholder="请输入真实姓名" name="name" pattern="[\u4e00-\u9fa5]{2,4}"
+                   minlength="2" maxlength="4" required>
+        </div>
+        <div class="am-input-group">
+            <span class="am-input-group-label"><i class="fa fa-id-card am-icon-fw"></i></span>
+            <input type="text" class="am-form-field" placeholder="请输入身份证号" name="idcard" pattern="\d{18}" minlength="18"
+                   maxlength="18" required>
+        </div>
+        <div class="am-input-group" style="padding-bottom: 30px;">
+            <span class="am-input-group-label"><i class="am-icon-phone am-icon-fw"></i></span>
+            <input type="text" class="am-form-field" placeholder="请输入手机号码" name="telephone"
+                   pattern="^1((3|5|8){1}\d{1}|70)\d{8}" minlength="11" maxlength="11" required>
+        </div>
+        <div class="am-input-group gj-rules gj-block">
+            <ol>
+                <li>请务必填写申请人真实信息</li>
+                <li>办卡审核通知将直接以短信形式发送至该手机号</li>
+                <li>身份证号一定要填写正确，否则申请成功后将无法领取平台奖励的红包</li>
+            </ol>
+        </div>
+        <div class="am-input-group gj-block" id="agree-check">
+            <div class="am-checkbox">
+                <label>
+                    <input type="checkbox" name="agree">阅读知晓并同意以下协议
+                </label>
+            </div>
+            <a href="agreement.html">《华银社网站用户协议》</a>
+        </div>
+        <div class="am-input-group" style="padding-bottom: 10px;">
+            <input type="hidden" name="bankCode" th:value="${bankCode}">
+            <input type="hidden" name="seller" th:value="${seller}">
+            <button type="submit" class="am-btn am-btn-block am-btn-primary am-round" disabled>提交</button>
+        </div>
+    </fieldset>
+</form>
+<footer>
+    <div class="am-container">
+        <p>版权所有 翻版必究</p>
+        <p>北京华融信和科技有限公司</p>
+    </div>
+</footer>
+<script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="http://cdn.amazeui.org/amazeui/2.7.2/js/amazeui.min.js"></script>
+<script type="text/javascript" src="http://cdn.amazeui.org/amazeui/2.7.2/js/amazeui.ie8polyfill.min.js"></script>
+<script type="text/javascript" src="http://cdn.amazeui.org/amazeui/2.7.2/js/amazeui.widgets.helper.min.js"></script>
+<script type="text/javascript" src="xpf/layer/mobile/layer.js"></script>
+<script type="text/javascript" src="xpf/common.js"></script>
+<script type="text/javascript" src="xpf/bankuser.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>推广</title>
+    <link rel="stylesheet" href="http://cdn.amazeui.org/amazeui/2.7.2/css/amazeui.min.css"/>
+    <link rel="stylesheet" href="xpf/common.css"/>
+    <link rel="stylesheet" href="xpf/bankspread.css"/>
+    <link rel="stylesheet" href="xpf/font-awesome/css/font-awesome.min.css"/>
+</head>
+<body>
+<header>
+    <img src="http://s.amazeui.org/media/i/demos/bing-1.jpg" th:src="${banner.imgUrl}"  class="am-img-responsive"/>
+</header>
+<ol class="am-breadcrumb">
+    <li>代理链接</li>
+</ol>
+<div class="am-container gj-block">
+    <div class="am-input-group">
+        <input type="text" readonly="readonly" class="am-form-field" id="seller_link" value="http://127.0.0.1:8020/gj/bankspread.html?__hbt=1520050197257#" th:value="${sellerLink}">
+        <span class="am-input-group-btn">
+        <button class="am-btn am-btn-default" type="button" onclick="copy();">复制</button>
+      </span>
+    </div>
+    <small class="am-text-center">
+        将链接复制，通过微信/QQ/微博等多渠道推广
+    </small>
+</div>
+<ol class="am-breadcrumb">
+    <li>分享邀请</li>
+</ol>
+<div class="am-container gj-block" id="gj-share">
+    <button type="submit" class="am-btn am-btn-block am-btn-primary am-round" id="share_btn">立即邀请</button>
+</div>
+<!--<footer>
+    <div class="am-container">
+        <p>版权所有 翻版必究</p>
+        <p>北京市XXX科技发展有限公司</p>
+    </div>
+</footer>-->
+<div id="shareit">
+    <img class="arrow" src="image/share-it.png">
+    <a href="#" id="follow">
+        点击发送给朋友
+    </a>
+</div>
+<script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="http://cdn.amazeui.org/amazeui/2.7.2/js/amazeui.min.js"></script>
+<script type="text/javascript" src="http://cdn.amazeui.org/amazeui/2.7.2/js/amazeui.ie8polyfill.min.js"></script>
+<script type="text/javascript" src="http://cdn.amazeui.org/amazeui/2.7.2/js/amazeui.widgets.helper.min.js"></script>
+<script type="text/javascript" src="xpf/layer/mobile/layer.js"></script>
+<script type="text/javascript" src="xpf/common.js"></script>
+<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script type="text/javascript" src="xpf/bankspread.js"></script>
+<script type="text/javascript" th:inline="javascript">
+    // var timestamp = parseInt([[${timestamp}]]);
+    // alert(timestamp)
+    wx.config({
+        debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+        appId: [[${appId}]], // 必填，公众号的唯一标识
+        timestamp: [[${timestamp}]], // 必填，生成签名的时间戳
+        nonceStr: [[${nonceStr}]], // 必填，生成签名的随机串
+        signature: [[${signature}]],// 必填，签名
+        jsApiList: ['onMenuShareAppMessage','onMenuShareTimeline','onMenuShareQQ','onMenuShareWeibo','onMenuShareQZone'] // 必填，需要使用的JS接口列表
+    });
+    wx.ready(function(){
+        // config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，config是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，不需要放在ready函数中。
+        wx.onMenuShareAppMessage({
+            title: '优惠办卡', // 分享标题
+            desc: '华银社诚邀您体验急速办卡，为您提供卓越服务！', // 分享描述
+            link: [[${sellerLink}]], // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            imgUrl: [[${imgUrl}]], // 分享图标
+            type: 'link', // 分享类型,music、video或link，不填默认为link
+            dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+            success: function () {
+            // 用户确认分享后执行的回调函数
+            },
+            cancel: function () {
+            // 用户取消分享后执行的回调函数
+            }
+        });
+        wx.onMenuShareTimeline({
+            title: '优惠办卡', // 分享标题
+            desc: '华银社诚邀您体验急速办卡，为您提供卓越服务！', // 分享描述
+            link: [[${sellerLink}]], // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            imgUrl: [[${imgUrl}]], // 分享图标
+            success: function () {
+            },
+            cancel: function () {
+            }
+        })
+        wx.onMenuShareQQ({
+            title: '优惠办卡', // 分享标题
+            desc: '华银社诚邀您体验急速办卡，为您提供卓越服务！', // 分享描述
+            link: [[${sellerLink}]], // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            imgUrl: [[${imgUrl}]], // 分享图标
+            success: function () {
+            // 用户确认分享后执行的回调函数
+            },
+            cancel: function () {
+            // 用户取消分享后执行的回调函数
+            }
+        });
+        wx.onMenuShareWeibo({
+            title: '优惠办卡', // 分享标题
+            desc: '华银社诚邀您体验急速办卡，为您提供卓越服务！', // 分享描述
+            link: [[${sellerLink}]], // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            imgUrl: [[${imgUrl}]], // 分享图标
+            success: function () {
+            },
+            cancel: function () {
+            }
+        });
+        wx.onMenuShareQZone({
+            title: '优惠办卡', // 分享标题
+            desc: '华银社诚邀您体验急速办卡，为您提供卓越服务！', // 分享描述
+            link: [[${sellerLink}]], // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            imgUrl: [[${imgUrl}]], // 分享图标
+            success: function () {
+            },
+            cancel: function () {
+            }
+        });
+    });
+    wx.error(function(res){
+        // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
+        $.messager.show("error")
+    });
+</script>
+</body>
+
+</html>

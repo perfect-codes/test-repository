@@ -122,7 +122,6 @@ public class WeChatController extends BaseController {
 //                    throw new GeneralException(ErrorCodeEnum.ERROR_NOT_EXIST);
                     model.addAttribute("seller", seller);
                     if (seller.getLeader() == null) {
-//                        throw new GeneralException(ErrorCodeEnum.ERROR_ROLE);
                         //二级销售
                         List<Seller> followers = sellerService.findByLeader(seller.getId());
                         followers.forEach(follower -> {
@@ -130,6 +129,12 @@ public class WeChatController extends BaseController {
                             follower.setIdcard(GJUtil.hidePartIDCard(follower.getIdcard()));
                         });
                         model.addAttribute("followers", followers);
+                        //邀请处理
+                        String sellerLink = propConfig.getWebDomain() + "/wechat/view/bankSeller";
+                        if (!StringUtils.isEmpty(openid)){
+                            sellerLink = sellerLink + "?seller="+seller.getId();
+                        }
+                        model.addAttribute("sellerLink",sellerLink);
                     }
                     //业绩
                     List<User> users = userService.findBySeller(seller.getOpenid());
@@ -138,23 +143,6 @@ public class WeChatController extends BaseController {
                         user.setIdcard(GJUtil.hidePartIDCard(user.getIdcard()));
                     });
                     model.addAttribute("users", users);
-                    //邀请处理
-                    String sellerLink = propConfig.getWebDomain() + "/wechat/view/bankSeller";
-                    if (!StringUtils.isEmpty(openid)){
-                        sellerLink = sellerLink + "?seller="+seller.getId();
-                    }
-                    model.addAttribute("sellerLink",sellerLink);
-                    //广告图
-//                    Banner banner = new Banner();
-//                    banner.setType(4);
-//                    banner.setStatus(StatusEnum.NORMAL.getVal());
-//                    try {
-//                        List<Banner> banners = bannerService.findAll(banner);
-//                        banner = banners.get(0);
-//                        model.addAttribute("banner",banner);//默认取该类型第一张
-//                    } catch (Exception e) {
-//                        logger.error("推广页banner加载错误",e);
-//                    }
                     //微信js-sdk
                     String url = propConfig.getWebDomain() + request.getRequestURI()+"?"+ request.getQueryString();
                     Map<String, String> ret = WechatSignUtil.sign(PropConfig.getJsapiTicket(), url);
