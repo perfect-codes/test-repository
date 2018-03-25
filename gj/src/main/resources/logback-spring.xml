@@ -6,7 +6,7 @@
         </encoder>
     </appender>
     <appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>/logs/gj.log</file>
+        <file>logs/gj.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <FileNamePattern>/logs/gj.%d{yyyy-MM-dd}.log.gz</FileNamePattern>
             <!-- keep 20 days' worth of history -->

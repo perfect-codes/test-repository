@@ -4,8 +4,10 @@ import com.perfectcodes.common.CommonResp;
 import com.perfectcodes.common.GeneralException;
 import com.perfectcodes.common.StatusEnum;
 import com.perfectcodes.component.PropConfig;
+import com.perfectcodes.domain.Bank;
 import com.perfectcodes.domain.Banner;
 import com.perfectcodes.domain.User;
+import com.perfectcodes.service.BankService;
 import com.perfectcodes.service.BannerService;
 import com.perfectcodes.service.UserService;
 import com.perfectcodes.web.vo.UserVo;
@@ -28,6 +30,8 @@ public class UserController extends BaseController {
     private UserService userService;
     @Autowired
     private BannerService bannerService;
+    @Autowired
+    private BankService bankService;
 
     /**
      * @author xpf
@@ -67,8 +71,13 @@ public class UserController extends BaseController {
         user.setCreateDate(curDate);
         user.setUpdateDate(curDate);
         user.setStatus(StatusEnum.NORMAL.getVal());
+        CommonResp successResp = successResp();
         try {
             userService.addBean(user);
+            Bank bank = bankService.getBeanByCode(userVo.getBankCode());
+            if (bank!=null){
+                successResp.setMessage(bank.getHtmlUrl());
+            }
         } catch(GeneralException e){
             logger.warn(e.getMessage());
             return failureResp().setMessage(e.getMessage());
@@ -76,7 +85,7 @@ public class UserController extends BaseController {
             logger.error("用户申请注册错误",e);
             return failureResp();
         }
-        return successResp();
+        return successResp;
     }
 
 }

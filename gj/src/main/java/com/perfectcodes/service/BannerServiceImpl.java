@@ -9,10 +9,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -43,24 +41,38 @@ public class BannerServiceImpl implements BannerService {
 
     @Override
     public List<Banner> findAll(Banner model) throws Exception {
-        return bannerRepository.findAll(getSpecification(model),new Sort(Sort.Direction.ASC,"indexOrder"));
+        return bannerRepository.findAll(getSpecification(model), new Sort(Sort.Direction.ASC, "indexOrder"));
     }
 
     @Override
-    public Page<Banner> pageBean(final Banner model,final Pageable pageable) throws Exception {
-        return bannerRepository.findAll(getSpecification(model),pageable);
+    public Page<Banner> pageBean(final Banner model, final Pageable pageable) throws Exception {
+        return bannerRepository.findAll(getSpecification(model), pageable);
     }
 
-    private Specification getSpecification(final Banner model){
+    private Specification getSpecification(final Banner model) {
         return new Specification<Banner>() {
             @Override
             public Predicate toPredicate(Root<Banner> root, CriteriaQuery<?> cquery, CriteriaBuilder cbuilder) {
+
+                List<Expression<Boolean>> andPredicates = new ArrayList<Expression<Boolean>>();
                 Predicate predicate = null;
-                if (model.getStatus()!=null){
-                    predicate = cbuilder.and(cbuilder.equal(root.<Integer>get("status"),model.getStatus()));
+                if (model.getStatus() != null) {
+                    predicate = cbuilder.and(cbuilder.equal(root.<Integer>get("status"), model.getStatus()));
+                    andPredicates.add(predicate);
                 }
-                return predicate;
+                if (model.getType() != null) {
+                    predicate = cbuilder.and(cbuilder.equal(root.<Integer>get("type"), model.getType()));
+                    andPredicates.add(predicate);
+                }
+                if (andPredicates.isEmpty()) {
+                    return null;
+                } else {
+                    Predicate predicat = cbuilder.conjunction();
+                    predicat.getExpressions().addAll(andPredicates);
+                    return predicat;
+                }
             }
+
         };
     }
 }

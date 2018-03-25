@@ -15,6 +15,7 @@ function submitInfo(){
         data:param,
         success:function(r){
             console.info(r.message)
+            location.href = r.message;
         }
     })
     return false;

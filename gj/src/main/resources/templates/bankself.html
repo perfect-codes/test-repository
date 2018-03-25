@@ -45,7 +45,7 @@
 								<tr th:if="${#lists.isEmpty(followers)}"><td colspan="3" style="text-align: center;">暂无数据</td></tr>
 							</tbody>
 						</table>
-						<a class="am-btn am-btn-block am-btn-primary am-round" id="share_btn" th:if="${sellerLink == null}">邀请加入</a>
+						<a class="am-btn am-btn-block am-btn-primary am-round" id="share_btn" th:if="${sellerLink != null}">邀请加入</a>
 					</div>
 					<div class="am-tab-panel am-fade" id="tab2">
 						<table class="am-table am-text-nowrap">

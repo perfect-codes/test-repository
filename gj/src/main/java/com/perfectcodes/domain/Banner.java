@@ -15,6 +15,7 @@ public class Banner implements Serializable {
     private String imgUrl;
     private Integer status;
     private Integer indexOrder;//顺序
+    private String linkUrl;//链接地址
 
     public Long getId() {
         return id;
@@ -68,6 +69,14 @@ public class Banner implements Serializable {
     public Banner setIndexOrder(Integer indexOrder) {
         this.indexOrder = indexOrder;
         return this;
+    }
+
+    public String getLinkUrl() {
+        return linkUrl;
+    }
+
+    public void setLinkUrl(String linkUrl) {
+        this.linkUrl = linkUrl;
     }
 
     @Override

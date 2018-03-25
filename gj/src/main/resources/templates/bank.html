@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-		<title>优惠办卡</title>
+		<title>点击办卡</title>
 		<link rel="stylesheet" href="http://cdn.amazeui.org/amazeui/2.7.2/css/amazeui.min.css" />
 		<link rel="stylesheet" href="xpf/common.css" />
 		<link rel="stylesheet" href="xpf/bank.css" />
@@ -12,15 +12,19 @@
 	</head>
 
 	<body>
-		<div data-am-widget="slider" class="am-slider am-slider-b2" data-am-slider='{&quot;controlNav&quot;:false}'>
+		<div data-am-widget="slider" class="am-slider am-slider-a1" data-am-slider='{&quot;directionNav&quot;:false}' >
 			<ul class="am-slides">
-				<li th:each="banner : ${banners}"><img src="http://s.amazeui.org/media/i/demos/bing-1.jpg" th:src="${banner.imgUrl}"/></li>
+				<li th:each="banner : ${banners}">
+					<a href="#" th:href="${banner.linkUrl}">
+						<img src="http://s.amazeui.org/media/i/demos/bing-1.jpg" th:src="${banner.imgUrl}"/>
+					</a>
+				</li>
 			</ul>
 		</div>
 		<section style="padding: 0 10px 2rem;">
 			<ol class="am-breadcrumb">
 				<li>
-					<a href="#">优惠办卡</a>
+					<a href="#">点击办卡</a>
 				</li>
 			</ol>
 			<div class="am-avg-sm-3 gj-banklist">
@@ -29,7 +33,7 @@
 						<div class="gj-banklist-item">
 							<img src="img/gd.png" th:src="${bank.logoUrl}"/>
 							<hr class="gj-line" />
-							<span class="am-badge am-radius am-badge-danger">秒批</span>
+							<span class="am-badge am-radius am-badge-danger" th:text="${bank.tag}"></span>
 							<dl>
 								<dt th:text="${bank.name}">苏联空军</dt>
 								<dd th:text="${bank.comment}">老司机带带我</dd>
@@ -44,19 +48,19 @@
 				<div class="am-u-sm-4">
 					<div class="gj-action-item">
 						<a class="am-icon-btn am-icon-hourglass-1"></a>
-						<p>进度查询</p>
+						<p>华银社</p>
 					</div>
 				</div>
 				<div class="am-u-sm-4">
 					<div class="gj-action-item">
 						<a class="am-icon-btn am-icon-key"></a>
-						<p>进度查询</p>
+						<p>小点子</p>
 					</div>
 				</div>
 				<div class="am-u-sm-4">
 					<div class="gj-action-item">
 						<a class="am-icon-btn am-icon-diamond"></a>
-						<p>进度查询</p>
+						<p>大智慧</p>
 					</div>
 				</div>
 			</div>

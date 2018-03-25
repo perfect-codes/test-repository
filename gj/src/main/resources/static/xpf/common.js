@@ -37,7 +37,7 @@ var domain = "http://111.207.18.18:60588/sop/rest/";
 				// },
 				success: function(r) {
 					if(r.status === 1) {
-                        $.messager.success(r.message)
+                        //$.messager.success(r.message)
 						if(option.success) {
 							option.success(r)
 						}

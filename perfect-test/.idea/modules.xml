@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/design-pattern/design-pattern.iml" filepath="$PROJECT_DIR$/design-pattern/design-pattern.iml" />
       <module fileurl="file://$PROJECT_DIR$/elasticsearch/elasticsearch.iml" filepath="$PROJECT_DIR$/elasticsearch/elasticsearch.iml" />
       <module fileurl="file://$PROJECT_DIR$/java-test/java-test.iml" filepath="$PROJECT_DIR$/java-test/java-test.iml" />
       <module fileurl="file://$PROJECT_DIR$/javamail/javamail.iml" filepath="$PROJECT_DIR$/javamail/javamail.iml" />

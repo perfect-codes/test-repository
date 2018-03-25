@@ -6,4 +6,6 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface BankRepository extends CrudRepository<Bank,Long>,JpaSpecificationExecutor<Bank>{
 
+     public Bank getByCode(String code);
+
 }

@@ -18,4 +18,6 @@ public interface BankService {
     List<Bank> findAll(Bank model) throws Exception;
 
     Page<Bank> pageBean(Bank model, Pageable pageable) throws Exception;
+
+    Bank getBeanByCode(String code) throws Exception;
 }

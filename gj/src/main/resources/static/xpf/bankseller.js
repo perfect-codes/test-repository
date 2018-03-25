@@ -47,7 +47,7 @@ function submitInfo(){
         url:"regist",
         data:param,
         success:function(r){
-            console.info(r.message)
+            $.messager.success(r.message)
         }
     })
     return false;
