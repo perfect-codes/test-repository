@@ -1,12 +1,13 @@
 package com.perfectcodes.web;
 
-import com.perfectcodes.common.BankCodeEnum;
 import com.perfectcodes.common.CommonResp;
 import com.perfectcodes.common.GeneralException;
 import com.perfectcodes.common.StatusEnum;
 import com.perfectcodes.component.PropConfig;
+import com.perfectcodes.domain.Bank;
 import com.perfectcodes.domain.Banner;
 import com.perfectcodes.domain.Seller;
+import com.perfectcodes.service.BankService;
 import com.perfectcodes.service.BannerService;
 import com.perfectcodes.service.SellerService;
 import com.perfectcodes.util.WechatSignUtil;
@@ -40,6 +41,8 @@ public class SellerController extends BaseController {
     @Autowired
     private BannerService bannerService;
     @Autowired
+    private BankService bankService;
+    @Autowired
     private PropConfig propConfig;
 
     @RequestMapping(value = "/bankSpread")
@@ -50,7 +53,8 @@ public class SellerController extends BaseController {
 //        if (seller == null){//不是代理
 //            //TODO 暂不处理
 //        }
-        String sellerLink = propConfig.getWebDomain() + "/wechat/" + getBankLink(bankCode);
+        Bank bank = bankService.getBeanByCode(bankCode);
+        String sellerLink = propConfig.getWebDomain() + "/wechat/" + getBankLink(bank.getName());
         if (!StringUtils.isEmpty(openid)){
             sellerLink = sellerLink + "?seller="+openid;
         }
@@ -103,17 +107,13 @@ public class SellerController extends BaseController {
      * @description 获取银行页面地址
      * @date 2018/3/4 19:13
      */
-    private static String getBankLink(String bankCode){
-        for (BankCodeEnum bankCodeEnum:BankCodeEnum.values()){
-            if (bankCodeEnum.getCode().equals(bankCode)){
-                try {
-                    return URLEncoder.encode(bankCodeEnum.toString(),"utf-8")+".html";
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
-                }
-            }
+    private static String getBankLink(String bankName){
+        try {
+            return URLEncoder.encode(bankName,"utf-8")+".html";
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
         }
-        return null;
+        return "";
     }
 
 }
