@@ -11,9 +11,9 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="activiti-demo" target="1.5" />
+      <module name="activiti-demo" target="1.6" />
       <module name="activitileave" target="1.6" />
-      <module name="bpm" target="1.5" />
+      <module name="bpm" target="1.6" />
     </bytecodeTargetLevel>
   </component>
 </project>

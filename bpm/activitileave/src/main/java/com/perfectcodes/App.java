@@ -24,6 +24,7 @@ public class App
     InitializingBean usersAndGroupsInitializer(final IdentityService identityService) {
 
         return new InitializingBean() {
+            @Override
             public void afterPropertiesSet() throws Exception {
 
                 Group group = identityService.newGroup("user");
