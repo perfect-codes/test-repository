@@ -73,8 +73,10 @@ public class ShiroConfiguration {
         // logged in users with the 'document:read' permission
         chainDefinition.addPathDefinition("/docs/**", "authc, perms[document:read]");
 
-        // all other paths require a logged in user
-        chainDefinition.addPathDefinition("/login", "anon");
+        // 放开登录
+        chainDefinition.addPathDefinition("/assets/**", "anon");
+        chainDefinition.addPathDefinition("/doLogin", "anon");
+        chainDefinition.addPathDefinition("/loginView", "anon");
 
         // all other paths require a logged in user
         chainDefinition.addPathDefinition("/**", "authc, roles[admin]");

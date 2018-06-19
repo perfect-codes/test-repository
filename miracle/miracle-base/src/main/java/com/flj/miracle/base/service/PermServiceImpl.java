@@ -86,6 +86,10 @@ public class PermServiceImpl implements PermService{
 		return (Specification<Perm>) (root, query, cb) -> {
 			List<Expression<Boolean>> andPredicates = new ArrayList<Expression<Boolean>>();
 			Predicate namePredicate = null;
+			if (model.getType()!=null){
+				namePredicate = cb.and(cb.equal(root.<Integer>get("type"),model.getType()));
+				andPredicates.add(namePredicate);
+			}
 			if (andPredicates.isEmpty()) {
 				return null;
 			} else {

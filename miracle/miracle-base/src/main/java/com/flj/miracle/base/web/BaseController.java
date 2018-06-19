@@ -10,6 +10,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.ui.Model;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Collection;
@@ -45,11 +46,31 @@ public class BaseController{
 	public Pageable getPageable(HttpServletRequest request) {
 		int number = getIntParamter(request, "number", 0);
 		int size = getIntParamter(request, "size", 10);
-		String sortField = getStrParamter(request, "sortField", "");
-		String sortOrder = getStrParamter(request, "sortOrder", "desc");
-		Sort sort = new Sort(Sort.Direction.fromString(sortOrder), new String[] { "".equals(sortField)?"id":sortField });
-		Pageable pageable = PageRequest.of(number, size, sort);
-		return pageable;
+		String sortField = getStrParamter(request, "sidx", "");
+		String sortOrder = getStrParamter(request, "sord", "desc");
+		Sort sort = null;
+		String fieldName = "";
+		if (sortField.indexOf(",")>0){
+			String[] fields = sortField.split(",");
+			for (String field:fields){
+				if (field.indexOf(" ")>0){
+//					String[] pair = field.split(" ");
+//					String key = pair[0];
+//					String val = pair[1];
+					continue;
+				}else {
+					fieldName = field.trim();
+					break;
+				}
+			}
+			sort = new Sort(Sort.Direction.fromString(sortOrder), new String[] { "".equals(fieldName)?"id":fieldName });
+			Pageable pageable = PageRequest.of(number, size, sort);
+			return pageable;
+		}else{
+			sort = new Sort(Sort.Direction.fromString(sortOrder), new String[] { "".equals(sortField)?"id":sortField });
+			Pageable pageable = PageRequest.of(number, size, sort);
+			return pageable;
+		}
 	}
 
 	public void bindBean(BaseModel model, Object entity) {
@@ -58,6 +79,20 @@ public class BaseController{
 		} catch (Exception ex) {
 			throw new RuntimeException(ex);
 		}
+	}
+
+	protected boolean isAdd(BaseModel model){
+		if (OPER_ADD.equals(model.getOper())){
+			return true;
+		}
+		return false;
+	}
+
+	protected boolean isDel(BaseModel model){
+		if (OPER_DEL.equals(model.getOper())){
+			return true;
+		}
+		return false;
 	}
 
 	public String success(String message) {
@@ -91,4 +126,7 @@ public class BaseController{
 	}
 
 	protected Logger logger = LoggerFactory.getLogger(getClass());
+
+	public static final String OPER_ADD = "add";
+	public static final String OPER_DEL = "del";
 }
