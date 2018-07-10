@@ -42,4 +42,8 @@ public interface UserRepository extends CrudRepository<User,Long>,JpaSpecificati
     @Query(value = "SELECT sr.id,sr.name,sr.code,sr.status,sr.create_date,sr.update_date from sys_user_role sur JOIN sys_role sr on sur.role_code = sr.code WHERE user_id = ?1",nativeQuery = true)
     List<Object[]> findRolesByUserId(Long userId);
 
+    User findByPhone(String phone);
+
+    User findByEmail(String email);
+
 }

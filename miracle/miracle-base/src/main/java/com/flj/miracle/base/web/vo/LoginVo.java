@@ -9,6 +9,7 @@ public class LoginVo {
     private String account;
     private String password;
     private String code;
+    private Integer rememberMe;
 
     public String getAccount() {
         return account;
@@ -34,6 +35,14 @@ public class LoginVo {
         this.code = code;
     }
 
+    public Integer getRememberMe() {
+        return rememberMe;
+    }
+
+    public void setRememberMe(Integer rememberMe) {
+        this.rememberMe = rememberMe;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("{");
@@ -43,6 +52,8 @@ public class LoginVo {
                 .append(password).append('\"');
         sb.append(",\"code\":\"")
                 .append(code).append('\"');
+        sb.append(",\"rememberMe\":")
+                .append(rememberMe);
         sb.append('}');
         return sb.toString();
     }

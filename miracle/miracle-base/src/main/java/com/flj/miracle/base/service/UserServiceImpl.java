@@ -109,6 +109,14 @@ public class UserServiceImpl implements UserService{
 		return roles;
 	}
 
+	@Override
+	public User findByAccount(String account) {
+		if (Pattern.matches("[\\d]{11}",account)){
+			return this.userRepository.findByPhone(account);
+		}
+		return this.userRepository.findByEmail(account);
+	}
+
 	private Specification<User> getSpecification(final UserModel model) {
 		return (Specification<User>) (root, query, cb) -> {
 			List<Expression<Boolean>> andPredicates = new ArrayList<Expression<Boolean>>();

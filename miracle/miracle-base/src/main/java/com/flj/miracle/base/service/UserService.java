@@ -62,4 +62,6 @@ public interface UserService{
 	User findByAccountAndPassword(String account,String password);
 
 	List<Role> findRolesByUserId(Long userId);
+
+	User findByAccount(String account);
 }

@@ -10,9 +10,9 @@ import com.flj.miracle.base.web.vo.LoginVo;
 import com.flj.miracle.core.common.CommonResp;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.session.Session;
 import org.apache.tomcat.util.security.MD5Encoder;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
@@ -21,6 +21,7 @@ import org.springframework.util.DigestUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.security.auth.Subject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -181,9 +182,9 @@ public class UserController extends BaseController {
      */
     @ResponseBody
     @RequestMapping(value = {"/doLogin"}, method = RequestMethod.POST)
-    public CommonResp login(@RequestBody @Valid LoginVo vo, BindingResult br, HttpSession session) {
+    public CommonResp login(@RequestBody @Valid LoginVo vo, BindingResult br) {
         try {
-            UsernamePasswordToken token = new UsernamePasswordToken(vo.getAccount(), vo.getPassword(), false);
+            UsernamePasswordToken token = new UsernamePasswordToken(vo.getAccount(), vo.getPassword(), vo.getRememberMe() != null);
             SecurityUtils.getSubject().login(token);
             //加载菜单
             User currentUser = (User) SecurityUtils.getSubject().getPrincipal();
@@ -212,6 +213,7 @@ public class UserController extends BaseController {
             lv1Htmls.forEach(item -> {
                 menusHtml.append(item).append("</li>");
             });
+            Session session = SecurityUtils.getSubject().getSession();
             session.setAttribute("menusHtml",menusHtml.toString());
             session.setAttribute("user",currentUser);
             return successResp();
@@ -229,6 +231,7 @@ public class UserController extends BaseController {
 
     @GetMapping(path = "usersView")
     public String usersView(){
+        org.apache.shiro.subject.Subject subject = SecurityUtils.getSubject();
         return "userlist";
     }
 
