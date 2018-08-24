@@ -1,0 +1,86 @@
+.welcome {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 6;
+    background: url(../file/bg_welcome.png) no-repeat;
+    background-size: 100% 100%;
+}
+
+.anim-opacity2 {
+    animation: 1s opacity2 0s 1;
+    -webkit-animation: 1s opacity2 0s 1;
+    -moz-animation: 1s opacity2 0s 1;
+}
+
+@keyframes opacity2 {
+    0% {
+        opacity: 1
+    }
+    50% {
+        opacity: .5;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@-webkit-keyframes opacity2 {
+    0% {
+        opacity: 1
+    }
+    50% {
+        opacity: .5;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@-moz-keyframes opacity2 {
+    0% {
+        opacity: 1
+    }
+    50% {
+        opacity: .5;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.loader {
+    width: 100%;
+    height: 100%;
+    background: #eee;
+    position: fixed;
+    z-index: 5;
+}
+
+.loader_dialog {
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.8);
+    width: 160px;
+    height: 160px;
+    position: absolute;
+    left: 50%;
+    margin-left: -80px;
+    top: 50%;
+    margin-top: -160px;
+    display: block
+}
+
+.loader_dialog img {
+    height: 50px;
+    width: 50px;
+    margin: 30px 0 0 55px
+}
+
+.loader_dialog div {
+    line-height: 24px;
+    font-size: 18px;
+    width: 100%;
+    text-align: center;
+    color: white;
+    margin-top: 25px
+}

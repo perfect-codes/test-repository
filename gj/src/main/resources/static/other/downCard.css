@@ -1,0 +1,83 @@
+body {
+    margin: 0;
+    font-family: 微软雅黑;
+}
+
+::-webkit-scrollbar {
+    width: 0;
+}
+
+.toolbar {
+    height: 56px;
+}
+
+.toolbar .title {
+    line-height: 56px;
+    text-align: center;
+}
+
+.banner {
+}
+
+.bar {
+    margin-top: 1px;
+    height: 48px;
+    line-height: 48px;
+    position: relative;
+}
+
+.bar .back {
+    width: 16px;
+    position: absolute;
+    height: 16px;
+    padding: 16px;
+}
+
+.bar .title {
+    height: 48px;
+    text-align: center;
+    line-height: 48px;
+}
+
+.bar .item {
+    position: absolute;
+    height: 45px;
+    left: 50%;
+    text-align: center;
+    line-height: 45px;
+    width: 150px;
+}
+
+.list {
+    position: relative;
+    padding-top: 15px;
+}
+
+.list .more {
+    height: 36px;
+    text-align: center;
+    line-height: 36px;
+}
+
+.list .list_in {
+    overflow: hidden;
+}
+
+.list .list_in .list_item {
+    height: 90px;
+    float: left;
+    width: calc(33% - 40px);
+    border: 1px solid #ccc;
+    position: relative;
+    padding: 10px 10px;
+    margin: 0 0 15px 15px;
+}
+
+.list .list_in .list_item img {
+    height: 50px;
+    width: auto;
+}
+
+.list .list_in .list_item div {
+    line-height: 16px;
+}

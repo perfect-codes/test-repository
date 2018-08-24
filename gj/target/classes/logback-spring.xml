@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %level [%thread] %class:%line >> %msg%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/gj.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>/logs/gj.%d{yyyy-MM-dd}.log.gz</FileNamePattern>
+            <!-- keep 20 days' worth of history -->
+            <maxHistory>20</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <!-- %-40(%-35logger{35}:%-4line) -->
+            <Pattern>[%date{yyyy-MM-dd HH:mm:ss}] [%-5level][%thread] [%logger:%line] --%mdc{client} %msg%n</Pattern>
+        </encoder>
+    </appender>
+
+    <logger name="org.springframework" level="info"/>
+    <logger name="com.perfectcodes" level="debug"/>
+    <root level="info">
+        <appender-ref ref="file"/>
+        <appender-ref ref="stdout"/>
+    </root>
+</configuration>

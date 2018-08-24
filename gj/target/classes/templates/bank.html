@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<title>点击办卡</title>
+		<link rel="stylesheet" href="http://cdn.amazeui.org/amazeui/2.7.2/css/amazeui.min.css" />
+		<link rel="stylesheet" href="xpf/common.css" />
+		<link rel="stylesheet" href="xpf/bank.css" />
+		<link rel="stylesheet" href="xpf/font-awesome/css/font-awesome.min.css" />
+	</head>
+
+	<body>
+		<div data-am-widget="slider" class="am-slider am-slider-a1" data-am-slider='{&quot;directionNav&quot;:false}' >
+			<ul class="am-slides">
+				<li th:each="banner : ${banners}">
+					<a href="#" th:href="${banner.linkUrl}">
+						<img src="http://s.amazeui.org/media/i/demos/bing-1.jpg" th:src="${banner.imgUrl}"/>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<section style="padding: 0 10px 2rem;">
+			<ol class="am-breadcrumb">
+				<li>
+					<a href="#">点击办卡</a>
+				</li>
+			</ol>
+			<div class="am-avg-sm-3 gj-banklist">
+				<div class="am-u-sm-4" th:each="bank : ${banks}">
+					<a href="#" th:href="${bank.name+'.html'}">
+						<div class="gj-banklist-item">
+							<img src="img/gd.png" th:src="${bank.logoUrl}"/>
+							<hr class="gj-line" />
+							<span class="am-badge am-radius am-badge-danger" th:text="${bank.tag}"></span>
+							<dl>
+								<dt th:text="${bank.name}">苏联空军</dt>
+								<dd th:text="${bank.comment}">老司机带带我</dd>
+							</dl>
+						</div>
+					</a>
+				</div>
+			</div>
+		</section>
+		<section class="gj-action-list">
+			<div class="am-container">
+				<div class="am-u-sm-4">
+					<div class="gj-action-item">
+						<a class="am-icon-btn am-icon-hourglass-1"></a>
+						<p>华银社</p>
+					</div>
+				</div>
+				<div class="am-u-sm-4">
+					<div class="gj-action-item">
+						<a class="am-icon-btn am-icon-key"></a>
+						<p>小点子</p>
+					</div>
+				</div>
+				<div class="am-u-sm-4">
+					<div class="gj-action-item">
+						<a class="am-icon-btn am-icon-diamond"></a>
+						<p>大智慧</p>
+					</div>
+				</div>
+			</div>
+		</section>
+		<footer>
+			<div class="am-container">
+				<p>版权所有 翻版必究</p>
+				<p>北京华融信和科技有限公司</p>
+			</div>
+		</footer>
+		<script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
+		<script type="text/javascript" src="http://cdn.amazeui.org/amazeui/2.7.2/js/amazeui.min.js"></script>
+		<script type="text/javascript" src="http://cdn.amazeui.org/amazeui/2.7.2/js/amazeui.ie8polyfill.min.js"></script>
+		<script type="text/javascript" src="http://cdn.amazeui.org/amazeui/2.7.2/js/amazeui.widgets.helper.min.js"></script>
+	</body>
+</html>

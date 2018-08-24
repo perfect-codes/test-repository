@@ -21,6 +21,7 @@ public class Bank implements Serializable {
     private String htmlUrl;
     private String comment;
     private Integer indexOrder;//顺序
+    private boolean requireInput;//是否要求输入
 
     public Long getId() {
         return id;
@@ -126,4 +127,11 @@ public class Bank implements Serializable {
         this.indexOrder = indexOrder;
     }
 
+    public boolean isRequireInput() {
+        return requireInput;
+    }
+
+    public void setRequireInput(boolean requireInput) {
+        this.requireInput = requireInput;
+    }
 }

@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/activiti-demo/activiti-demo.iml" filepath="$PROJECT_DIR$/activiti-demo/activiti-demo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/activiti-springboot-demo1/activiti-springboot-demo1.iml" filepath="$PROJECT_DIR$/activiti-springboot-demo1/activiti-springboot-demo1.iml" />
       <module fileurl="file://$PROJECT_DIR$/activitileave/activitileave.iml" filepath="$PROJECT_DIR$/activitileave/activitileave.iml" />
       <module fileurl="file://$PROJECT_DIR$/bpm.iml" filepath="$PROJECT_DIR$/bpm.iml" />
     </modules>

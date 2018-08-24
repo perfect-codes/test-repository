@@ -1,0 +1,19 @@
+.am-nav>li.am-nav-header {
+	border-left: 3px solid #3bb4f2;
+	/*padding: 0 1em;*/
+	margin-top: .4em;
+	margin-bottom: .4em;
+}
+.gj-bankitem{
+	width: 100%;
+	height: 6rem;
+	background: url(../img/gd.png) top no-repeat;
+	vertical-align: bottom;
+}
+.gj-badge-container{
+	height: 3rem;
+}
+.gj-text-line{
+	margin: 0 0 .5rem 0 !important;
+	line-height: 1.6rem;
+}

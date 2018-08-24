@@ -8,6 +8,7 @@
   <modules>
     <module>activiti-demo</module>
     <module>activitileave</module>
+    <module>activiti-springboot-demo1</module>
   </modules>
   <packaging>pom</packaging>
 
