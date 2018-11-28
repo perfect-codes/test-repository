@@ -1,0 +1,3 @@
+INSERT INTO miracle.sys_role (id, code, name) VALUES (1, 'admin', '管理员');
+INSERT INTO miracle.sys_user (id, true_name, phone, email, user_name, avatar, gender, password, status, create_date, update_date) VALUES (1, '管理员', 13000000000, '692959826@qq.com', 'admin', 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif', 1, 'admin', 1, '2018-11-07 23:17:20', NULL);
+INSERT INTO miracle.sys_user_role (id, user_id, role_id) VALUES (1, 1, 1);
