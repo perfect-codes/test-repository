@@ -163,14 +163,14 @@ def out_of_china(lng, lat):
 
 def stations():
 
-    #数据库
+    #开发数据库
     rds_host = 'rm-2zeu2qjf0b3nnt0s8.mysql.rds.aliyuncs.com'
     rds_user = 'ruubypaytest'
     rds_password = 'Ruyixing2017'
     rds_charset = 'utf8'
     dbname = 'ruubypayactivity'
 
-    sql="select id,map_lng,map_lat from ck_stations where map_lng <> ''"
+    sql = "select id,map_lng,map_lat from ck_stations where map_lng <> ''"
 
     updateSql = "update ck_stations set map_lng=%s,map_lat=%s where id=%s"
 
@@ -223,9 +223,9 @@ def stations2():
             lng = float(row[1])
             lat = float(row[2])
 
-            wgs = wgs84_to_gcj02(lng,lat)
-            print("id=%s,lng=%s,lat=%s,newLng=%s,newLat=%s" %(id, lng, lat,wgs[0],wgs[1]))
-            cursor.execute(updateSql,(str(wgs[0]),str(wgs[1]),id))
+            wgs = wgs84_to_gcj02(lng, lat)
+            print("id=%s,lng=%s,lat=%s,newLng=%s,newLat=%s" %(id, lng, lat, wgs[0], wgs[1]))
+            cursor.execute(updateSql, (str(wgs[0]), str(wgs[1]), id))
             rds_conn.commit()
 
     except db.Error, e:
@@ -235,18 +235,17 @@ def stations2():
         if rds_conn:
             rds_conn.close()
 
-
 if __name__ == '__main__':
-    # lng = 116.359135
-    # lat = 39.973176
-    # result1 = gcj02_to_bd09(lng, lat)
-    # result2 = bd09_to_gcj02(lng, lat)
-    # result3 = wgs84_to_gcj02(lng, lat)
-    # result4 = gcj02_to_wgs84(lng, lat)
-    # result5 = bd09_to_wgs84(lng, lat)
-    # result6 = wgs84_to_bd09(lng, lat)
+    lng = 116.369931361
+    lat = 39.9763670747
+    result1 = gcj02_to_bd09(lng, lat)
+    result2 = bd09_to_gcj02(lng, lat)
+    result3 = wgs84_to_gcj02(lng, lat)
+    result4 = gcj02_to_wgs84(lng, lat)
+    result5 = bd09_to_wgs84(lng, lat)
+    result6 = wgs84_to_bd09(lng, lat)
 
 # #    g = Geocoding('API_KEY')  # 这里填写你的高德api的key
 # #    result7 = g.geocode('北京市朝阳区朝阳公园')
-    # print(result1,result2,result3,result4,result5, result6,result6[0])
-    stations()
+    print(result1,result2,result3,result4,result5, result6)
+    # stations()
