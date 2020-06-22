@@ -55,8 +55,7 @@ public class AutoLogAspect {
             log.error("返回结果处理异常", e);
         } finally {
             log.debug("处理结束|{}.{}", st.getDeclaringTypeName(), st.getName());
-            MDC.remove(REQUEST_ID);
-            MDC.remove(REQUEST_TYPE);
+            MDC.clear();
         }
     }
 
