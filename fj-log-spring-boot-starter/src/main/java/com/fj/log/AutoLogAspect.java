@@ -3,12 +3,12 @@ package com.fj.log;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fj.log.annotation.AutoLog;
-import lombok.extern.slf4j.Slf4j;
-import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
-import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
 import org.springframework.core.annotation.Order;
 
@@ -20,7 +20,6 @@ import java.util.UUID;
  * @author xpf
  * @date 2018/9/29 下午10:29
  */
-@Slf4j
 @Aspect
 @Order(1)
 public class AutoLogAspect {
@@ -30,33 +29,35 @@ public class AutoLogAspect {
 
     private final JsonMapper jsonMapper = new JsonMapper();
 
-    @Before(value = "@annotation(autoLog)")
-    public void before(JoinPoint joinPoint, AutoLog autoLog) {
+    @Around(value = "@annotation(autoLog)")
+    public Object around(ProceedingJoinPoint joinPoint, AutoLog autoLog) {
+        long beginTime = System.currentTimeMillis();
+        Signature st = joinPoint.getSignature();
+        Logger log = LoggerFactory.getLogger(st.getDeclaringTypeName());
         String requestId = UUID.randomUUID().toString().replaceAll("-", "");
         MDC.put(REQUEST_ID, requestId);
         MDC.put(REQUEST_TYPE, autoLog.name());
-        Signature st = joinPoint.getSignature();
-        log.debug("开始处理|{}.{}",st.getDeclaringTypeName(), st.getName());
+        log.debug("开始处理|{}", toJson(joinPoint.getArgs()));
+        Object response = null;
         try {
-            String requestParam = jsonMapper.writeValueAsString(joinPoint.getArgs());
-            log.debug("请求参数|{}", requestParam);
-        } catch (JsonProcessingException e) {
-            log.error("请求参数处理异常", e);
-        }
-    }
-
-    @AfterReturning(pointcut = "@annotation(autoLog)", returning = "re")
-    public void after(JoinPoint joinPoint, AutoLog autoLog, Object re) {
-        Signature st = joinPoint.getSignature();
-        try {
-            String responseData = jsonMapper.writeValueAsString(re);
-            log.debug("返回结果|{}", responseData);
-        } catch (JsonProcessingException e) {
-            log.error("返回结果处理异常", e);
+            response = joinPoint.proceed(joinPoint.getArgs());
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
         } finally {
-            log.debug("处理结束|{}.{}", st.getDeclaringTypeName(), st.getName());
+            long endTime = System.currentTimeMillis();
+            log.debug("处理结束|{}|{}ms", toJson(response), endTime-beginTime);
             MDC.clear();
         }
+        return response;
+    }
+
+    private String toJson(Object o) {
+        try {
+            return jsonMapper.writeValueAsString(o);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 }
