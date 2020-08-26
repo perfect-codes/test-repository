@@ -30,7 +30,7 @@ public class AutoLogAspect {
     private final JsonMapper jsonMapper = new JsonMapper();
 
     @Around(value = "@annotation(autoLog)")
-    public Object around(ProceedingJoinPoint joinPoint, AutoLog autoLog) {
+    public Object around(ProceedingJoinPoint joinPoint, AutoLog autoLog) throws Throwable{
         long beginTime = System.currentTimeMillis();
         Signature st = joinPoint.getSignature();
         Logger log = LoggerFactory.getLogger(st.getDeclaringTypeName());
@@ -42,7 +42,7 @@ public class AutoLogAspect {
         try {
             response = joinPoint.proceed(joinPoint.getArgs());
         } catch (Throwable throwable) {
-            throwable.printStackTrace();
+            throw throwable;
         } finally {
             long endTime = System.currentTimeMillis();
             log.debug("处理结束|{}|{}ms", toJson(response), endTime-beginTime);
